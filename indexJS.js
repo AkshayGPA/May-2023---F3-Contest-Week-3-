@@ -49,11 +49,17 @@ function submitDetails() {
     successEl.classList.add('hidden');
   } 
   else {
-    if (password !== cnfPassword) {
+    if (password !== cnfPassword && (!(email.split('').includes('@')))) {
       passwordMismatchedEl.classList.remove('hidden');
-    } 
-    else if (!(email.split('').includes('@'))) {  
       invalidemailEl.classList.remove('hidden');
+    }
+    else if (password !== cnfPassword && (email.split('').includes('@'))) {
+      passwordMismatchedEl.classList.remove('hidden');
+      invalidemailEl.classList.add('hidden');
+    } 
+    else if (!(email.split('').includes('@')) && (password === cnfPassword)) {  
+      invalidemailEl.classList.remove('hidden');
+      passwordMismatchedEl.classList.add('hidden');
     } 
     else {
       successEl.classList.remove('hidden');
